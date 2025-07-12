@@ -3,6 +3,9 @@ import SurveyResponse from '@/app/models/SurveyResponse';
 import { connectToDatabase } from '@/app/lib/db';
 import { sendCompletionEmail, sendBetaWaitlistEmail, sendAdminNotification } from '@/app/lib/resend';
 
+// Check if we have a Resend API key for email functionality
+const hasResendApiKey = !!process.env.RESEND_API_KEY;
+
 export async function POST(req: NextRequest) {
   try {
     // Connect to the database
@@ -36,17 +39,22 @@ export async function POST(req: NextRequest) {
         );
         
         // Handle email notifications if survey is complete
-        if (updatedResponse.isComplete && updatedResponse.email) {
-          // Send completion email
-          await sendCompletionEmail(updatedResponse.email);
-          
-          // If user opted for beta, send beta waitlist email
-          if (updatedResponse.betaInterest) {
-            await sendBetaWaitlistEmail(updatedResponse.email);
+        // Send email notifications if this is the final submission and we have an API key
+        if (updatedResponse.isComplete && updatedResponse.email && hasResendApiKey) {
+          try {
+            await sendCompletionEmail(updatedResponse.email);
+            
+            // Send beta waitlist email if they opted in
+            if (updatedResponse.betaInterest) {
+              await sendBetaWaitlistEmail(updatedResponse.email);
+            }
+            
+            // Notify admin
+            await sendAdminNotification(updatedResponse);
+          } catch (emailError) {
+            // Log email error but don't fail the request
+            console.error('Error sending email notifications:', emailError);
           }
-          
-          // Send notification to admin
-          await sendAdminNotification(updatedResponse);
         }
         
         return NextResponse.json({ 
@@ -81,6 +89,32 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('Error saving survey response:', error);
+    
+    // Handle Mongoose validation errors more gracefully
+    if (error.name === 'ValidationError') {
+      const validationErrors: Record<string, string> = {};
+      
+      // Extract specific validation errors
+      if (error.errors) {
+        Object.keys(error.errors).forEach(key => {
+          if (error.errors && error.errors[key]?.message) {
+            validationErrors[key] = error.errors[key].message;
+          }
+        });
+      }
+      
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: 'Validation failed', 
+          errors: validationErrors,
+          details: error.message || "Error saving survey response"
+        },
+        { status: 400 } // 400 Bad Request for validation errors
+      );
+    }
+    
+    // Handle other errors
     return NextResponse.json(
       { 
         success: false, 

@@ -76,7 +76,8 @@ const SurveyResponseSchema = new Schema<ISurveyResponse>(
     // Market validation questions
     eventAttendanceFrequency: {
       type: String,
-      enum: ['never', 'rarely', 'sometimes', 'often', 'always']
+      enum: ['never', 'rarely', 'sometimes', 'often', 'always'],
+      required: false
     },
     
     eventTypes: [{
@@ -101,12 +102,14 @@ const SurveyResponseSchema = new Schema<ISurveyResponse>(
     // Provider income interest
     providerIncomeInterest: {
       type: String,
-      enum: ['very_interested', 'somewhat_interested', 'not_interested', 'need_more_info']
+      enum: ['very_interested', 'somewhat_interested', 'not_interested', 'need_more_info'],
+      required: false
     },
     
     expectedEarnings: {
       type: String,
-      enum: ['1k-2k', '2k-5k', '5k-10k', '10k+', 'not_sure']
+      enum: ['1k-2k', '2k-5k', '5k-10k', '10k+', 'not_sure'],
+      required: false
     },
     
     // Safety concerns
@@ -117,8 +120,9 @@ const SurveyResponseSchema = new Schema<ISurveyResponse>(
     
     safetyComfortLevel: {
       type: Number,
-      min: 1,
-      max: 5 // 1 = very uncomfortable, 5 = very comfortable
+      min: 0, // Changed from 1 to 0 to allow for unselected state
+      max: 5, // 1 = very uncomfortable, 5 = very comfortable
+      required: false
     },
     
     // Beta waitlist

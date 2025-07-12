@@ -12,6 +12,9 @@ module.exports = {
       colors: {
         primary: '#FDCA64', // amber/gold from the design system
       },
+      fontFamily: {
+        'loved-by-the-king': ['var(--font-loved-by-the-king)'],
+      },
     },
   },
   darkMode: 'class',
