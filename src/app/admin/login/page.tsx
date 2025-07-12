@@ -3,8 +3,16 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Spacer } from "@heroui/react";
-import { FormInput } from '@/app/components/ui/FormInput';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Spacer,
+} from "@heroui/react";
+import { FormInput } from "@/app/components/ui/FormInput";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,14 +42,17 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
       setError(null);
-      
+
       const response = await signIn("credentials", {
         redirect: false,
         email: data.email,
         password: data.password,
       });
 
-      if (response?.error) {
+      console.log("Login Response: ", response);
+
+      if (response?.error !== "undefined") {
+        console.log("Setting error: Invalid email or password");
         setError("Invalid email or password");
         return;
       }
@@ -61,7 +72,9 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-col items-center">
           <h1 className="text-2xl font-bold">WhiteLie Admin Login</h1>
-          <p className="text-neutral-500 text-sm">Please sign in to access the admin area</p>
+          <p className="text-neutral-500 text-sm">
+            Please sign in to access the admin area
+          </p>
         </CardHeader>
         <Divider />
         <CardBody>

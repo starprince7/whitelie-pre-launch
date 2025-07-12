@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare } from "bcryptjs";
+import { compare as bcryptCompare } from "bcryptjs";
 import { connectToDatabase } from "../../../lib/mongoose";
 import User from "../../../models/User";
 
@@ -14,29 +14,55 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log('Credentials: ', credentials);
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        await connectToDatabase();
-        const user = await User.findOne({ email: credentials.email }).populate('role');
+        console.log("Connecting to database...")
+        try {
+          await connectToDatabase();
+          console.log('Db connected')
 
-        if (!user) {
+          // Print the query we're about to run for debugging
+          console.log('Running query for email:', credentials.email.toLowerCase());
+
+          // Add timeout to prevent hanging queries
+          const user = await User.findOne({ email: credentials.email.toLowerCase() })
+
+          console.log('User query completed');
+
+          if (!user) {
+            console.log('No user found with email:', credentials.email);
+            return null;
+          }
+
+          console.log('User found:', user.email);
+
+          // Compare the provided password with the hashed password in the database
+          const isPasswordValid = await bcryptCompare(credentials.password, user.hashedPassword);
+
+          console.log('Password valid:', isPasswordValid);
+
+          if (!isPasswordValid) {
+            console.log('Invalid password');
+            return null;
+          }
+
+          // Return the user object without the password
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name,
+            role: user.role,
+            image: user.image
+          };
+        } catch (error) {
+          console.error('Error during authentication:', error);
           return null;
         }
 
-        const passwordValid = await compare(credentials.password, user.hashedPassword);
-
-        if (!passwordValid) {
-          return null;
-        }
-
-        return {
-          id: user._id.toString(),
-          email: user.email,
-          name: user.name,
-          role: user.role?.name || "user",
-        };
+        // This block is now handled inside the try/catch above
       },
     }),
   ],

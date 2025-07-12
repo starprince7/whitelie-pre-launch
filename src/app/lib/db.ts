@@ -1,20 +1,16 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/whitelie';
-
-if (!MONGODB_URI) {
+if (!process.env.MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable');
 }
 
+const MONGODB_URI = process.env.MONGODB_URI;
+
 /**
  * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections from growing exponentially
+ * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-declare global {
-  var mongoose: any;
-}
-
 let cached = global.mongoose;
 
 if (!cached) {
@@ -23,7 +19,6 @@ if (!cached) {
 
 export async function connectToDatabase() {
   if (cached.conn) {
-    console.log('Using cached connection');
     return cached.conn;
   }
 
@@ -31,20 +26,11 @@ export async function connectToDatabase() {
     const opts = {
       bufferCommands: false,
     };
+
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose;
     });
   }
-
-  try {
-    console.log('Connecting to MongoDB...');
-    cached.conn = await cached.promise;
-    console.log('Connected to MongoDB');
-  } catch (e) {
-    console.error('Failed to connect to MongoDB:', e);
-    cached.promise = null;
-    throw e;
-  }
-
+  cached.conn = await cached.promise;
   return cached.conn;
 }
