@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Input, Spacer } from "@heroui/react";
+import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Spacer } from "@heroui/react";
+import { FormInput } from '@/app/components/ui/FormInput';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -71,25 +72,25 @@ export default function LoginPage() {
           )}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <Input
+              <FormInput
                 label="Email"
                 placeholder="admin@example.com"
                 type="email"
                 {...register("email")}
                 isInvalid={!!errors.email}
-                errorMessage={errors.email?.message}
+                error={errors.email?.message}
                 fullWidth
                 autoFocus
               />
             </div>
             <div>
-              <Input
+              <FormInput
                 label="Password"
                 placeholder="••••••••"
                 type="password"
                 {...register("password")}
                 isInvalid={!!errors.password}
-                errorMessage={errors.password?.message}
+                error={errors.password?.message}
                 fullWidth
               />
             </div>

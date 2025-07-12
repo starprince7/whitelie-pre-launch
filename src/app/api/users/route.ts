@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/app/lib/database";
 import User from "@/app/lib/models/User";
+import { z } from "zod";
+import { rateLimit, rateLimitResponse } from "@/app/lib/rate-limiter";
 
 // GET all users
 export async function GET(request: NextRequest) {

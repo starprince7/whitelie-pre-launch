@@ -3,9 +3,16 @@ import connectToDatabase from "@/app/lib/database";
 import SurveyResponse from "@/app/lib/models/SurveyResponse";
 import User from "@/app/lib/models/User";
 import mongoose from "mongoose";
+import { rateLimit, rateLimitResponse } from "@/app/lib/rate-limiter";
 
 // GET all survey responses
 export async function GET(request: NextRequest) {
+  // Apply rate limiting
+  const rateLimitResult = await rateLimit(request, '/api/surveys');
+  if (!rateLimitResult.success) {
+    return rateLimitResponse(rateLimitResult.message || 'Too many requests', 60);
+  }
+  
   try {
     await connectToDatabase();
     
@@ -47,6 +54,12 @@ export async function GET(request: NextRequest) {
 
 // POST a new survey response
 export async function POST(request: NextRequest) {
+  // Apply rate limiting
+  const rateLimitResult = await rateLimit(request, '/api/surveys');
+  if (!rateLimitResult.success) {
+    return rateLimitResponse(rateLimitResult.message || 'Too many requests', 60);
+  }
+  
   try {
     await connectToDatabase();
     const session = await mongoose.startSession();
