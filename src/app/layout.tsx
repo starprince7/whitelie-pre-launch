@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "./components/providers";
-import { lovedByTheKing } from "./fonts";
+import { inter, lovedByTheKing } from "./fonts";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "WhiteLie | Platonic Companionship Service",
@@ -18,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={lovedByTheKing.variable}>
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${lovedByTheKing.variable}`}>
+      <body>
         <Providers>
           {children}
         </Providers>

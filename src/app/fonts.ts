@@ -1,4 +1,10 @@
-import { Loved_by_the_King } from 'next/font/google';
+import { Inter, Loved_by_the_King } from 'next/font/google';
+
+export const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const lovedByTheKing = Loved_by_the_King({
   weight: ['400'],
