@@ -12,7 +12,7 @@ import {
   Divider,
   Spacer,
 } from "@heroui/react";
-import { FormInput } from "@/app/components/ui/FormInput";
+import { FormInput } from "@/components/ui/FormInput";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,11 +50,9 @@ export default function LoginPage() {
       });
 
       console.log("Login Response: ", response);
-
-      if (response?.error !== "undefined") {
+      if (response?.error) {
         console.log("Setting error: Invalid email or password");
         setError("Invalid email or password");
-        return;
       }
 
       router.push("/admin");

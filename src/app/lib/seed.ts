@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { connectToDatabase } from './mongoose';
-import User from '../models/User';
-import Role from '../models/Role';
+import User from '@/models/User';
+import Role from '@/models/Role';
 
 export async function seedDatabase() {
   try {

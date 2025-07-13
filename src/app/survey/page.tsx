@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import SurveyForm from '../components/survey/SurveyForm';
-import PrivacyConsentModal from '../components/survey/PrivacyConsentModal';
+import SurveyForm from '@/components/survey/SurveyForm';
+import PrivacyConsentModal from '@/components/survey/PrivacyConsentModal';
 
 
 export default function SurveyPage() {

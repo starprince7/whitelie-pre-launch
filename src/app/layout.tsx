@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Providers } from "./components/providers";
-import { inter, lovedByTheKing } from "./fonts";
-import "./globals.css";
+import { Providers } from "@/components/providers";
+import { inter, lovedByTheKing } from "@/fonts";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "WhiteLie | Platonic Companionship Service",

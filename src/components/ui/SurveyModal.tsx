@@ -22,7 +22,7 @@ import {
   Select,
   SelectItem
 } from '@heroui/react';
-import { FormInput, FormTextArea } from '@/app/components/ui/FormInput';
+import { FormInput, FormTextArea } from '@/components/ui/FormInput';
 
 // Define the survey schema
 const surveySchema = z.object({
