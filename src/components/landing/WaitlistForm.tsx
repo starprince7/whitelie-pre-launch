@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import YouTubeEmbed from './YouTubeEmbed';
 
 const WaitlistForm = () => {
   const router = useRouter();
@@ -115,6 +116,11 @@ const WaitlistForm = () => {
               </p>
             )}
           </form>
+        </div>
+
+        <div className="mt-20 max-w-xs mx-auto">
+          <h3 className="text-center text-2xl font-bold mb-8">See How It Works</h3>
+          <YouTubeEmbed embedId="y9TaEiCsO90" title="WhiteLie Concept Explainer" />
         </div>
       </div>
     </section>

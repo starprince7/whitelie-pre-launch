@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import YouTubeEmbed from "./YouTubeEmbed";
 
 const HeroSection = () => {
   return (
@@ -9,10 +10,13 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-grid-black/[0.05] dark:bg-grid-white/[0.05]"></div>
       <div className="container mx-auto px-8 lg:px-12 text-center relative z-10">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 to-neutral-600 dark:from-white dark:to-neutral-300">
-          Hire a <span className="text-amber-400">boo ✨</span> today for <br /> Business and Social Occasions
+          Hire a <span className="text-amber-400">boo ✨</span> today for <br />{" "}
+          Business and Social Occasions
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-neutral-600 dark:text-neutral-300">
-          Access verified professionals for corporate functions, networking events, and social engagements. Our platform facilitates strictly platonic, professional companionship on a contractual basis.
+          Access verified professionals for corporate functions, networking
+          events, and social engagements. Our platform facilitates strictly
+          platonic, professional companionship on a contractual basis.
         </p>
         <div className="mt-12">
           <Link
@@ -21,6 +25,15 @@ const HeroSection = () => {
           >
             Join Waitlist & Shape Our Future
           </Link>
+        </div>
+        <div className="mt-20 max-w-xs mx-auto">
+          <h3 className="text-center text-2xl font-bold mb-8">
+            See How It Works
+          </h3>
+          <YouTubeEmbed
+            embedId="y9TaEiCsO90"
+            title="WhiteLie Concept Explainer"
+          />
         </div>
       </div>
     </section>
