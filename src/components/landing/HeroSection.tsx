@@ -14,18 +14,11 @@ const HeroSection = () => {
           Business and Social Occasions
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-neutral-600 dark:text-neutral-300">
-          Access verified professionals for corporate functions, networking
+          Rent a boyfriend or girlfriend for corporate functions, networking
           events, and social engagements. Our platform facilitates strictly
           platonic, professional companionship on a contractual basis.
         </p>
-        <div className="mt-12">
-          <Link
-            href="/survey"
-            className="inline-block bg-amber-400 text-black font-bold py-4 px-10 rounded-lg text-lg hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-75 transition-all duration-300 transform hover:scale-105"
-          >
-            Join Waitlist & Shape Our Future
-          </Link>
-        </div>
+
         <div className="mt-20 max-w-xs mx-auto">
           <h3 className="text-center text-2xl font-bold mb-8">
             See How It Works
@@ -34,6 +27,14 @@ const HeroSection = () => {
             embedId="y9TaEiCsO90"
             title="WhiteLie Concept Explainer"
           />
+        </div>
+        <div className="mt-12">
+          <Link
+            href="/survey"
+            className="inline-block bg-amber-400 text-black font-bold py-4 px-10 rounded-lg text-lg hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-75 transition-all duration-300 transform hover:scale-105"
+          >
+            Join Waitlist
+          </Link>
         </div>
       </div>
     </section>
