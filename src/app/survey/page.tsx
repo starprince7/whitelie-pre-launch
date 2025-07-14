@@ -13,16 +13,16 @@ export default function SurveyPage() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [mounted, setMounted] = useState(false);
   
-  useEffect(() => {
-    // Check if user has already accepted privacy policy
-    const hasAcceptedPrivacy = localStorage.getItem('whitelie_privacy_consent');
-    if (!hasAcceptedPrivacy) {
-      setShowPrivacyModal(true);
-    }
+  // useEffect(() => {
+  //   // Check if user has already accepted privacy policy
+  //   const hasAcceptedPrivacy = localStorage.getItem('whitelie_privacy_consent');
+  //   if (!hasAcceptedPrivacy) {
+  //     setShowPrivacyModal(true);
+  //   }
     
-    // Prevent hydration mismatch with theme
-    setMounted(true);
-  }, []);
+  //   // Prevent hydration mismatch with theme
+  //   setMounted(true);
+  // }, []);
 
   const handlePrivacyAccept = () => {
     localStorage.setItem('whitelie_privacy_consent', 'true');
@@ -117,11 +117,11 @@ export default function SurveyPage() {
       </div>
 
       {/* Privacy Consent Modal */}
-      <PrivacyConsentModal 
+      {/* <PrivacyConsentModal 
         open={showPrivacyModal}
         onAccept={handlePrivacyAccept}
         onDecline={handlePrivacyDecline}
-      />
+      /> */}
     </main>
   );
 }
