@@ -4,35 +4,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import SurveyForm from '@/components/survey/SurveyForm';
-import PrivacyConsentModal from '@/components/survey/PrivacyConsentModal';
-
 
 export default function SurveyPage() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
-  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [mounted, setMounted] = useState(false);
   
-  // useEffect(() => {
-  //   // Check if user has already accepted privacy policy
-  //   const hasAcceptedPrivacy = localStorage.getItem('whitelie_privacy_consent');
-  //   if (!hasAcceptedPrivacy) {
-  //     setShowPrivacyModal(true);
-  //   }
-    
-  //   // Prevent hydration mismatch with theme
-  //   setMounted(true);
-  // }, []);
-
-  const handlePrivacyAccept = () => {
-    localStorage.setItem('whitelie_privacy_consent', 'true');
-    setShowPrivacyModal(false);
-  };
-
-  const handlePrivacyDecline = () => {
-    // Redirect to homepage if they decline
-    router.push('/');
-  };
+  useEffect(() => {
+    // Prevent hydration mismatch with theme
+    setMounted(true);
+  }, []);
 
   // Use the loved-by-the-king font for the heading
   const toggleTheme = () => {
@@ -116,12 +97,7 @@ export default function SurveyPage() {
         </div>
       </div>
 
-      {/* Privacy Consent Modal */}
-      {/* <PrivacyConsentModal 
-        open={showPrivacyModal}
-        onAccept={handlePrivacyAccept}
-        onDecline={handlePrivacyDecline}
-      /> */}
+
     </main>
   );
 }
