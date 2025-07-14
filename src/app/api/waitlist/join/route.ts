@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     await dbConnect();
 
-    const { email, userType } = await request.json();
+    const { email, userType, firstName } = await request.json();
 
     if (!email || !userType) {
       return NextResponse.json({ message: 'Email and user type are required.' }, { status: 400 });
@@ -23,6 +23,7 @@ export async function POST(request: Request) {
     const newUser: Partial<IWaitlist> = {
       email,
       userType,
+      firstName,
       source: 'landing_page',
       status: 'active',
       priority: 'medium',

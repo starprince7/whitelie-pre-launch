@@ -5,7 +5,7 @@ import { compare as bcryptCompare } from "bcryptjs";
 import { connectToDatabase } from "@/lib/mongoose";
 import User from "@/models/User";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",

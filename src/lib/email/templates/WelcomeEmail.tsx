@@ -1,12 +1,10 @@
-'use client';
-
 import React from 'react';
 
 interface WelcomeEmailProps {
   firstName?: string;
 }
 
-const WelcomeEmail: React.FC<Readonly<WelcomeEmailProps>> = ({ firstName }) => {
+export default function WelcomeEmail({ firstName }: Readonly<WelcomeEmailProps>) {
   const containerStyle: React.CSSProperties = {
     fontFamily: 'Arial, sans-serif',
     lineHeight: '1.6',
@@ -69,6 +67,4 @@ const WelcomeEmail: React.FC<Readonly<WelcomeEmailProps>> = ({ firstName }) => {
         </div>
     </div>
   );
-};
-
-export default WelcomeEmail;
+}
