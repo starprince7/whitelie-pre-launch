@@ -2,12 +2,17 @@ import { Resend } from 'resend';
 
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY);
+const fromEmail = process.env.FROM_EMAIL;
+
+if (!fromEmail) {
+  throw new Error('FROM_EMAIL environment variable is not set');
+}
 
 // Email template for survey completion
 export const sendCompletionEmail = async (email: string) => {
   try {
     const data = await resend.emails.send({
-      from: 'WhiteLie <no-reply@whitelie.com>',
+      from: `WhiteLie <${fromEmail}>`,
       to: email,
       subject: "Thanks for helping us build something amazing!",
       html: `
@@ -32,7 +37,7 @@ export const sendCompletionEmail = async (email: string) => {
 export const sendBetaWaitlistEmail = async (email: string) => {
   try {
     const data = await resend.emails.send({
-      from: 'WhiteLie <no-reply@whitelie.com>',
+      from: `WhiteLie <${fromEmail}>`,
       to: email,
       subject: "You're on the list! Early access coming soon",
       html: `
@@ -65,7 +70,7 @@ export const sendAdminNotification = async (responseData: any) => {
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@whitelie.com';
     
     const data = await resend.emails.send({
-      from: 'WhiteLie Survey <no-reply@whitelie.com>',
+      from: `WhiteLie Survey <${fromEmail}>`,
       to: adminEmail,
       subject: "New Survey Response Received",
       html: `
@@ -94,7 +99,7 @@ export const sendWeeklyDigest = async (analyticsData: any) => {
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@whitelie.com';
     
     const data = await resend.emails.send({
-      from: 'WhiteLie Survey <no-reply@whitelie.com>',
+      from: `WhiteLie Survey <${fromEmail}>`,
       to: adminEmail,
       subject: "Weekly Survey Analytics Digest",
       html: `
