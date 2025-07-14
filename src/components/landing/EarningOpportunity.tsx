@@ -6,8 +6,8 @@ import { TrendingUp, CalendarDays, Briefcase } from 'lucide-react';
 const opportunities = [
   {
     icon: <TrendingUp className="w-8 h-8 text-amber-400" />,
-    title: 'Competitive Rates',
-    description: 'Earn ₦2,000-₦10,000+ per engagement, with performance bonuses for exceptional service ratings.',
+    title: 'Earn Money',
+    description: 'Earn ₦20,000-₦30,000+ per engagement, with performance bonuses.',
   },
   {
     icon: <CalendarDays className="w-8 h-8 text-amber-400" />,
