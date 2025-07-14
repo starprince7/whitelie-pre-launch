@@ -69,17 +69,22 @@ export async function POST(req: NextRequest) {
     const newResponse = await SurveyResponse.create(surveyData);
     
     // If survey is complete and email provided, send emails
-    if (newResponse.isComplete && newResponse.email) {
-      // Send completion email
-      await sendCompletionEmail(newResponse.email);
-      
-      // If user opted for beta, send beta waitlist email
-      if (newResponse.betaInterest) {
-        await sendBetaWaitlistEmail(newResponse.email);
+    if (newResponse.isComplete && newResponse.email && hasResendApiKey) {
+      try {
+        // Send completion email
+        await sendCompletionEmail(newResponse.email);
+        
+        // If user opted for beta, send beta waitlist email
+        if (newResponse.betaInterest) {
+          await sendBetaWaitlistEmail(newResponse.email);
+        }
+        
+        // Send notification to admin
+        await sendAdminNotification(newResponse);
+      } catch (emailError) {
+        // Log email error but don't fail the request
+        console.error('Error sending email notifications for new response:', emailError);
       }
-      
-      // Send notification to admin
-      await sendAdminNotification(newResponse);
     }
     
     return NextResponse.json({ 
