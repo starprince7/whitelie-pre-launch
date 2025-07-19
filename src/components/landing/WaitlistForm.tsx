@@ -16,6 +16,11 @@ const WaitlistForm = () => {
     setStatus('loading');
     setMessage('');
 
+    // SLEEP FOR 2 SECONDS
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    router.push('/survey');
+    return;
+    
     if (!email) {
       setStatus('error');
       setMessage('Email address is required.');
@@ -119,7 +124,7 @@ const WaitlistForm = () => {
         </div>
 
         <div className="mt-20 max-w-xs mx-auto">
-          <h3 className="text-center text-2xl font-bold mb-8">See How It Works</h3>
+          <h3 className="text-center text-2xl font-bold mb-8">WATCH VIDEO</h3>
           <YouTubeEmbed embedId="y9TaEiCsO90" title="WhiteLie Concept Explainer" />
         </div>
       </div>

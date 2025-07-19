@@ -24,6 +24,7 @@ export default function SurveyForm() {
     userType: string;
     eventAttendanceFrequency?: string;
     eventTypes: string[];
+    otherEventType?: string; // Added for capturing 'Other' event type specification
     hourlyRateComfort: {
       client: number;
       provider: number;
@@ -46,6 +47,7 @@ export default function SurveyForm() {
     userType: '',
     eventAttendanceFrequency: undefined,
     eventTypes: [],
+    otherEventType: undefined, // Added for capturing 'Other' event type specification
     hourlyRateComfort: {
       client: 0,
       provider: 0,

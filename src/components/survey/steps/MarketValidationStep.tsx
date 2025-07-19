@@ -45,9 +45,9 @@ export default function MarketValidationStep({
   };
 
   const frequencyOptions = [
-    { id: 'never', label: 'Never' },
-    { id: 'rarely', label: 'Rarely' },
     { id: 'sometimes', label: 'Sometimes' },
+    { id: 'rarely', label: 'Rarely' },
+    { id: 'never', label: 'Never' },
     { id: 'often', label: 'Often' },
     { id: 'always', label: 'Always' },
   ];

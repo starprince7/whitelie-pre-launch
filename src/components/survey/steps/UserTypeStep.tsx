@@ -27,12 +27,12 @@ export default function UserTypeStep({ formData, updateFormData, onNext }: UserT
   const options = [
     {
       id: 'client',
-      label: 'I\'d hire someone for companionship at events',
+      label: 'I want to hire someone for companionship at events',
       description: 'Find the perfect plus-one for your important events'
     },
     {
       id: 'provider',
-      label: 'I\'d provide companionship services for income',
+      label: 'I want to provide companionship services for income',
       description: 'Earn money attending events and being a supportive companion'
     },
     {

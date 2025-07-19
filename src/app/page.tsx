@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <main className="bg-black">
       <HeroSection />
-      <EarningOpportunity />
-      <HowItWorks />
+      {/* <HowItWorks /> */}
       <UseCases />
-      <SafetyMeasures />
-      <PricingPreview />
+      {/* <SafetyMeasures /> */}
+      {/* <PricingPreview /> */}
+      <EarningOpportunity />
       <WaitlistForm />
     </main>
   );

@@ -16,6 +16,7 @@ export default function EventTypesStep({
   onBack,
 }: EventTypesStepProps) {
   const [error, setError] = useState('');
+  const [otherEventType, setOtherEventType] = useState('');
 
   const eventOptions = [
     { id: 'weddings', label: 'Weddings', icon: '💍' },
@@ -48,6 +49,18 @@ export default function EventTypesStep({
       setError('Please select at least one event type');
       return;
     }
+    
+    // Check if 'other' is selected but the text field is empty
+    if (isSelected('other') && !otherEventType.trim()) {
+      setError('Please specify the other event type');
+      return;
+    }
+    
+    // If other is selected and we have a value, update form data with otherEventType
+    if (isSelected('other') && otherEventType.trim()) {
+      updateFormData({ otherEventType });
+    }
+    
     onNext();
   };
 
@@ -105,6 +118,23 @@ export default function EventTypesStep({
           </div>
         ))}
       </div>
+      
+      {/* Show text input when 'other' is selected */}
+      {isSelected('other') && (
+        <div className="mt-4">
+          <label htmlFor="otherEventType" className="block text-sm font-medium text-white mb-1">
+            Please specify the event type:
+          </label>
+          <input
+            type="text"
+            id="otherEventType"
+            value={otherEventType}
+            onChange={(e) => setOtherEventType(e.target.value)}
+            className="w-full p-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:ring-1 focus:ring-[#FDCA64] focus:border-[#FDCA64]"
+            placeholder="Specify other event type here..."
+          />
+        </div>
+      )}
 
       {error && <p className="text-red-500 text-sm">{error}</p>}
 

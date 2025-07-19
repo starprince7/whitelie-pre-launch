@@ -29,9 +29,9 @@ export default function SafetyStep({
   const comfortLevelOptions = [
     { value: 1, label: 'Very uncomfortable' },
     { value: 2, label: 'Somewhat uncomfortable' },
+    { value: 5, label: 'Very comfortable' },
     { value: 3, label: 'Neutral' },
     { value: 4, label: 'Somewhat comfortable' },
-    { value: 5, label: 'Very comfortable' },
   ];
 
   const toggleSafetyPriority = (safetyId: string) => {
@@ -127,8 +127,8 @@ export default function SafetyStep({
       </div>
 
       <div className="space-y-6">
-        <h3 className="font-medium text-white">
-          How comfortable would you feel using a platonic companionship service with proper safety measures?
+        <h3 className="font-medium text-lg text-white">
+          Would safety measures make you try a companion service?
         </h3>
         <div className="space-y-4">
           {comfortLevelOptions.map((option) => (

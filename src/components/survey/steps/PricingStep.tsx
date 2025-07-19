@@ -83,13 +83,13 @@ export default function PricingStep({
     <div className="space-y-8">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-white mb-4">
-          {isClient && !isProvider && 'What\'s a fair hourly rate for professional event companionship?'}
+          {isClient && !isProvider && 
+            'Help us understand what you would be comfortable paying for quality companionship services.'}
           {isProvider && !isClient && 'What hourly rate would motivate you to provide this service?'}
           {isClient && isProvider && 'Let\'s talk about pricing preferences'}
         </h2>
         <p className="text-neutral-400 max-w-xl mx-auto">
-          {isClient && !isProvider && 
-            'Help us understand what you would be comfortable paying for quality companionship services.'}
+          
           {isProvider && !isClient && 
             'Tell us what compensation would make this opportunity worthwhile for you.'}
           {isClient && isProvider && 

@@ -3,7 +3,8 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Button, Card, CardBody, CardHeader, Spacer } from "@heroui/react";
+import { Button } from "@heroui/react";
+import AnalyticsDashboard from "./dashboard/AnalyticsDashboard";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -49,61 +50,7 @@ export default function AdminDashboard() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="border border-[#FDCA64]/20 hover:border-[#FDCA64]/50 transition-all duration-200">
-            <CardHeader className="pb-2">
-              <h2 className="text-xl font-semibold">Users</h2>
-            </CardHeader>
-            <CardBody>
-              <p className="text-3xl font-bold text-[#FDCA64]">0</p>
-              <p className="text-neutral-500 text-sm">Registered users</p>
-              <Spacer y={2} />
-              <Button
-                size="sm"
-                variant="flat"
-                className="bg-black/5 hover:bg-black/10"
-              >
-                Manage Users
-              </Button>
-            </CardBody>
-          </Card>
-
-          <Card className="border border-[#FDCA64]/20 hover:border-[#FDCA64]/50 transition-all duration-200">
-            <CardHeader className="pb-2">
-              <h2 className="text-xl font-semibold">Services</h2>
-            </CardHeader>
-            <CardBody>
-              <p className="text-3xl font-bold text-[#FDCA64]">0</p>
-              <p className="text-neutral-500 text-sm">Active services</p>
-              <Spacer y={2} />
-              <Button
-                size="sm"
-                variant="flat"
-                className="bg-black/5 hover:bg-black/10"
-              >
-                Manage Services
-              </Button>
-            </CardBody>
-          </Card>
-
-          <Card className="border border-[#FDCA64]/20 hover:border-[#FDCA64]/50 transition-all duration-200">
-            <CardHeader className="pb-2">
-              <h2 className="text-xl font-semibold">Revenue</h2>
-            </CardHeader>
-            <CardBody>
-              <p className="text-3xl font-bold text-[#FDCA64]">$0.00</p>
-              <p className="text-neutral-500 text-sm">Total revenue</p>
-              <Spacer y={2} />
-              <Button
-                size="sm"
-                variant="flat"
-                className="bg-black/5 hover:bg-black/10"
-              >
-                View Analytics
-              </Button>
-            </CardBody>
-          </Card>
-        </div>
+        <AnalyticsDashboard />
       </div>
     </div>
   );

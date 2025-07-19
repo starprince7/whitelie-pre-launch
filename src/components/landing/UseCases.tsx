@@ -31,7 +31,7 @@ const UseCases = () => {
     <section className="bg-white dark:bg-black text-neutral-800 dark:text-white py-24 sm:py-32">
       <div className="container mx-auto px-8 lg:px-12">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">Versatile Professional Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Events You Can Hire for!</h2>
           <p className="mt-4 max-w-2xl mx-auto text-neutral-600 dark:text-neutral-300">
             Ideal for a wide range of business, social, and networking occasions.
           </p>

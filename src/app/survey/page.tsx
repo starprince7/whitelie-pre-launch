@@ -50,14 +50,6 @@ export default function SurveyPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6 font-loved-by-the-king">
             Help Shape the Future of Companionship Services
           </h1>
-          <div className="space-y-6 max-w-3xl mx-auto">
-            <p className="text-xl text-neutral-800 dark:text-neutral-300">
-              Your feedback is essential as we develop WhiteLie, a revolutionary platform connecting clients with professional companions for platonic events and occasions.
-            </p>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400">
-              This 5-minute survey will help us understand your needs and preferences, ensuring we build a service that truly meets market demands.
-            </p>
-          </div>
           
           <div className="mt-10 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
             <div className="flex items-center">
