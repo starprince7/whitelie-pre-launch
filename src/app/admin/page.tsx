@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Button } from "@heroui/react";
 import AnalyticsDashboard from "./dashboard/AnalyticsDashboard";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -41,13 +42,23 @@ export default function AdminDashboard() {
               Welcome back, {session.user?.name || session.user?.email}
             </p>
           </div>
-          <Button
-            color="default"
-            className="bg-black text-white hover:bg-neutral-800"
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            Sign Out
-          </Button>
+          <div className="flex gap-4">
+            <Link href="/admin/survey-dashboard">
+              <Button
+                color="primary"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Survey Dashboard
+              </Button>
+            </Link>
+            <Button
+              color="default"
+              className="bg-black text-white hover:bg-neutral-800"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              Sign Out
+            </Button>
+          </div>
         </div>
 
         <AnalyticsDashboard />
