@@ -18,13 +18,13 @@ async function isAdminAuthenticated() {
 export async function GET(request: NextRequest) {
   try {
     // TODO: Re-enable admin authentication in production
-    // const isAdmin = await isAdminAuthenticated();
-    // if (!isAdmin) {
-    //   return NextResponse.json(
-    //     { success: false, error: "Unauthorized access" },
-    //     { status: 401 }
-    //   );
-    // }
+    const isAdmin = await isAdminAuthenticated();
+    if (!isAdmin) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized access" },
+        { status: 401 }
+      );
+    }
 
     await connectToDatabase();
 
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     const eventTypeCounts: { [key: string]: number } = {};
     responses.forEach(r => {
       if (r.eventTypes) {
-        r.eventTypes.forEach(type => {
+        r.eventTypes.forEach((type: string) => {
           eventTypeCounts[type] = (eventTypeCounts[type] || 0) + 1;
         });
       }
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
     const safetyPriorityCounts: { [key: string]: number } = {};
     responses.forEach(r => {
       if (r.safetyPriorities) {
-        r.safetyPriorities.forEach(priority => {
+        r.safetyPriorities.forEach((priority: string) => {
           safetyPriorityCounts[priority] = (safetyPriorityCounts[priority] || 0) + 1;
         });
       }
